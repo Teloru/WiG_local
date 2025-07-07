@@ -1,0 +1,29 @@
+# fichiers temporaires et caches
+*.log
+*.cache
+*.tmp
+
+# cache WordPress
+wp-content/cache/
+wp-content/*cache/
+wp-content/backups/
+wp-content/upgrade/
+wp-content/plugins/backwpup/
+wp-content/plugins/backupbuddy/
+wp-content/plugins/wp-rocket/cache/
+wp-content/plugins/*.log
+wp-content/wflogs/
+wp-content/plugins_bak/
+wp-content/themes/Divi/
+
+# dossiers d'uploads (fichiers médias utilisateurs)
+wp-content/uploads/
+
+# fichier de configuration local
+wp-config.php
+
+# fichiers de sauvegarde automatiques
+*.bak
+*.swp
+*.txt
+*~
