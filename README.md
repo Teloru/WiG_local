@@ -1,43 +1,93 @@
 # Women in Games France - Website
 
-To work locally on plugins & themes of WiG France
+Local development environment for WiG France plugins & themes.
 
-## Setup
+## Prerequisites
 
-- Clone this repo
-- Export the SQL file from OVH's db
-- Install [LocalWP](https://localwp.com/) and launch it
+- Admin access to OVHCloud
+- [LocalWP](https://localwp.com/) installed
+- FTP access to get `wp-config.php`
 
-### Get the SQL file
+## Quick Setup
 
-You will need an admin access to OVHCloud. Then, go to Hosting plans/`womeningamesfrance.org`/Multisite.
+1. **Clone this repository**
+2. **Export the SQL file** from OVH's database
+3. **Install LocalWP** and create a new site
+4. **Import the database** and configure local URLs
 
-You will be able to access to Databases from here. Click on the three dots on the right, then "Go to phpMyAdmin".
+## Step 1: Get the SQL file
 
-Connect with the credentials given in `wp-config`, you will also need this file at the root of your project. You can get it via FTP from OVHCloud. Don't share it publicly.
+> ⚠️ **Important**: You need admin access to OVHCloud and the `wp-config.php` file (get it via FTP). **Never share these credentials publicly.**
 
-From there, click on Export. Select `fast`, `SQL format` and save the SQL file on your computer.
+1. Go to **OVHCloud** → **Hosting plans** → `womeningamesfrance.org` → **Multisite**
+2. Access **Databases** and click the **three dots** → **"Go to phpMyAdmin"**
+3. Connect using credentials from `wp-config.php`
+4. Click **Export** → Select **"fast"** → **"SQL format"** → Save the file
 
-### LocalWP
+## Step 2: Setup LocalWP
 
-This tool will help you run locally the website. I tried it only on Windows, it might differ on other OS.
+> 💡 **Note**: This setup was tested on Windows. Steps may vary on other OS.
 
-Select "Create a new site", you can name it "wigfr-local". Select "Preferred" for the environment (you can change the PHP version etc later if you need).
+### Create a new site
 
-Put a random WP Username, password and email since it's going to be modified with our SQL file anyway. You can put "admin" with "toto" as password so you remember it if needed.
+1. Open LocalWP and select **"Create a new site"**
+2. Name it `wigfr-local`
+3. Select **"Preferred"** environment (you can change PHP version later)
+4. Set temporary credentials:
 
-Press "Add site" and let the app ask you for authorizations, accept them.
+   - Username: `admin`
+   - Password: `toto`
+   - Email: any email
 
-Local will now create a blank new website. This can take a few minutes.
+   > These will be replaced when importing the database
 
-When it's ready, you can open the local site on the File Explorer, and paste all the content from this git repo inside `Local Sites/wigfr-local/app/public`. This can take a little time, depending on your computer speed.
+5. Click **"Add site"** and accept any authorization requests
+6. Wait for the site creation (this may take a few minutes)
 
-Now, we need to give the database we grabbed to the local website. Go to Local, click on Database (make sure your website is running live!) then click on "Open AdminerNeo".
+### Copy project files
 
-From there, drop all the tables (there should be 12).
+1. Once ready, open the local site in **File Explorer**
+2. Navigate to `Local Sites/wigfr-local/app/public`
+3. **Copy all content** from this git repository into that folder
+4. Wait for the copy to complete
 
-When it's done, you can now click on `Import` on the left and upload your SQL file from OVHCloud. Press `Execute` and wait for a few minutes since the db is pretty large. You will see a success when the upload is finished.
+## Step 3: Import the database
 
-Now, go to your databases and select the one named `womeninghy540`. Then go inside the `mod152_options` table. Display the data, and edit the keys `siteurl` and `home` with the correct local link (e.g. `http://wigfr-local.local/`).
+> ⚠️ **Make sure your website is running live in LocalWP before proceeding!**
 
-Now, you should be able to go to `http://wigfr-local.local/wp-admin`, setting up and connect to your WiG admin account.
+### Access the database
+
+1. In LocalWP, click on **Database** → **"Open AdminerNeo"**
+2. **Drop all existing tables** (there should be 12 tables)
+
+### Import your SQL file
+
+1. Click **Import** in the left menu
+2. **Upload your SQL file** from OVHCloud
+3. Press **Execute** and wait (this may take a few minutes due to the large database size)
+4. You'll see a success message when the upload is complete
+
+### Configure local URLs
+
+1. Go to your database and select `womeninghy540`
+2. Navigate to the `mod152_options` table
+3. **Edit the following keys** with your local URL (e.g., `http://wigfr-local.local/`):
+   - `siteurl`
+   - `home`
+
+## Step 4: Access your local site
+
+🎉 **You're all set!**
+
+- **Admin panel**: `http://wigfr-local.local/wp-admin`
+- **Frontend**: `http://wigfr-local.local/`
+
+Use your WiG admin account credentials to connect.
+
+---
+
+## Troubleshooting
+
+- **Database connection issues**: Check that LocalWP site is running
+- **URL problems**: Verify that `siteurl` and `home` values in the database match your local URL. Clear your cache with CTRL+F5 so it doesn't redirect
+- **File permissions**: Make sure all files were copied correctly from the git repository
