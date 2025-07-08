@@ -14,7 +14,6 @@ wp-content/plugins/wp-rocket/cache/
 wp-content/plugins/*.log
 wp-content/wflogs/
 wp-content/plugins_bak/
-wp-content/themes/Divi/
 
 # dossiers d'uploads (fichiers médias utilisateurs)
 wp-content/uploads/
