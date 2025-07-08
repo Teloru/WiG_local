@@ -15,9 +15,6 @@ wp-content/plugins/*.log
 wp-content/wflogs/
 wp-content/plugins_bak/
 
-# dossiers d'uploads (fichiers médias utilisateurs)
-wp-content/uploads/
-
 # fichier de configuration local
 wp-config.php
 
